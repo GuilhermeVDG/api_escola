@@ -1,0 +1,25 @@
+{
+  "name": "api_escola",
+  "version": "1.0.0",
+  "description": "\"An api to admin a school\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeVDG/api_escola.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuilhermeVDG/api_escola/issues"
+  },
+  "homepage": "https://github.com/GuilhermeVDG/api_escola#readme",
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}
