@@ -3,6 +3,8 @@ import cors from 'cors';
 
 import Routes from './routes';
 
+import './database';
+
 export default class App {
   constructor() {
     this.app = express();
