@@ -8,16 +8,16 @@ export default class App {
     this.app = express();
     this.routes = new Routes();
 
-    this.app.use(cors);
-    this.app.use(express.urlencoded({ extend: true }));
+    this.app.use(cors());
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
 
     this.app.use(this.routes.setup());
   }
 
   startServer() {
-    this.app.listen(1987, () => {
-      console.log('Server started in port 1987');
+    this.app.listen(3215, () => {
+      console.log('Server started in port 3215');
     });
   }
 }
