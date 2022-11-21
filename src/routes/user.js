@@ -9,7 +9,7 @@ export default class User {
   }
 
   setup() {
-    this.routes.get('/', this.userController.store);
+    this.routes.post('/store', this.userController.store);
 
     return this.routes;
   }

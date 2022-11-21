@@ -1,7 +1,9 @@
-export default class User {
-  async store() {
-    console.log('hello world');
+import User from '../models/user';
 
-    return { ok: true };
+export default class Users {
+  async store(data) {
+    const response = await User.create(data);
+
+    return response;
   }
 }

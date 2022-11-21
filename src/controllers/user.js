@@ -1,6 +1,6 @@
 import UserServices from '../services/user';
 
-export default class User {
+export default class Users {
   constructor() {
     this.userServices = new UserServices();
 
@@ -8,7 +8,11 @@ export default class User {
   }
 
   async store(req, res) {
-    const response = await this.userServices.store();
+    const response = await this.userServices.store({
+      name: 'Guilherme',
+      email: 'dev@super.com',
+      password: '123123',
+    });
 
     return res.json(response);
   }
