@@ -8,12 +8,16 @@ export default class Users {
   }
 
   async store(req, res) {
-    const response = await this.userServices.store({
-      name: 'Guilherme',
-      email: 'dev@super.com',
-      password: '123123',
-    });
+    try {
+      const response = await this.userServices.store({
+        name: 'Guilherme',
+        email: 'dev@super.com',
+        password: '123123',
+      });
 
-    return res.json(response);
+      return res.json(response);
+    } catch (error) {
+      return res.status(400).json({ errors: error.errors.map((err) => err.message) });
+    }
   }
 }

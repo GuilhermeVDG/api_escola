@@ -8,13 +8,17 @@ export default class Students {
   }
 
   async store(req, res) {
-    const response = await this.studentServices.store({
-      name: 'Guilherme',
-      surname: 'Vanderley',
-      email: 'guilherme@gmail.com',
-      age: 20,
-    });
+    try {
+      const response = await this.studentServices.store({
+        name: 'Guilherme',
+        surname: 'Vanderley',
+        email: 'guilherme@gmail.com',
+        age: 20,
+      });
 
-    return res.json(response);
+      return res.json(response);
+    } catch (error) {
+      return res.status(400).json('SOMETHING_WRONG_HAPPENED');
+    }
   }
 }
