@@ -9,11 +9,7 @@ export default class Users {
 
   async store(req, res) {
     try {
-      const response = await this.userServices.store({
-        name: 'Guilherme',
-        email: 'dev@super.com',
-        password: '123123',
-      });
+      const response = await this.userServices.store(req.body);
 
       return res.json(response);
     } catch (error) {
