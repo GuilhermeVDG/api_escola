@@ -12,4 +12,10 @@ export default class Users {
 
     return response;
   }
+
+  async find(filter) {
+    const response = await User.findByPk(~~filter.id);
+
+    return response;
+  }
 }

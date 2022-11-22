@@ -11,6 +11,7 @@ export default class User {
   setup() {
     this.routes.post('/store', this.userController.store);
     this.routes.get('/index', this.userController.index);
+    this.routes.get('/find/:id', this.userController.find);
 
     return this.routes;
   }
