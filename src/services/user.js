@@ -6,4 +6,10 @@ export default class Users {
 
     return response;
   }
+
+  async index() {
+    const response = await User.findAll();
+
+    return response;
+  }
 }

@@ -10,6 +10,7 @@ export default class User {
 
   setup() {
     this.routes.post('/store', this.userController.store);
+    this.routes.get('/index', this.userController.index);
 
     return this.routes;
   }
