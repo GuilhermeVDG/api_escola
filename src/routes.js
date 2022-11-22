@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import UserRoutes from './routes/user';
 import StudentRoutes from './routes/student';
+import SessionRoutes from './routes/session';
 
 export default class Routes {
   constructor() {
@@ -9,11 +10,13 @@ export default class Routes {
 
     this.userRoutes = new UserRoutes();
     this.studentRoutes = new StudentRoutes();
+    this.sessionRoutes = new SessionRoutes();
   }
 
   setup() {
     this.routes.use('/', this.userRoutes.setup());
     this.routes.use('/students', this.studentRoutes.setup());
+    this.routes.use('/session', this.sessionRoutes.setup());
 
     return this.routes;
   }
