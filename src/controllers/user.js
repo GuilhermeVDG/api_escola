@@ -5,7 +5,6 @@ export default class Users {
     this.userServices = new UserServices();
 
     this.store = this.store.bind(this);
-    this.index = this.index.bind(this);
     this.find = this.find.bind(this);
   }
 
@@ -19,19 +18,9 @@ export default class Users {
     }
   }
 
-  async index(req, res) {
+  async detail(req, res) {
     try {
-      const response = await this.userServices.index();
-
-      return res.json(response);
-    } catch (error) {
-      return res.status(400).json('NOT_FOUND');
-    }
-  }
-
-  async find(req, res) {
-    try {
-      const response = await this.userServices.find(req.params);
+      const response = await this.userServices.detail(req.userId);
 
       return res.json(response);
     } catch (error) {

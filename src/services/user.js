@@ -2,20 +2,24 @@ import User from '../models/user';
 
 export default class Users {
   async store(data) {
-    const response = await User.create(data);
+    const { id, name, email } = await User.create(data);
 
-    return response;
+    return {
+      id,
+      name,
+      email,
+    };
   }
 
-  async index() {
-    const response = await User.findAll();
+  async detail(userId) {
+    const { id, name, email } = await User.findByPk(~~userId);
 
-    return response;
-  }
+    if (!id) throw new Error('NOT_FOUND');
 
-  async find(filter) {
-    const response = await User.findByPk(~~filter.id);
-
-    return response;
+    return {
+      id,
+      name,
+      email,
+    };
   }
 }

@@ -14,8 +14,7 @@ export default class User {
 
     this.routes.use(AuthMiddleware);
 
-    this.routes.get('/index', this.userController.index);
-    this.routes.get('/find/:id', this.userController.find);
+    this.routes.get('/detail', this.userController.detail);
 
     return this.routes;
   }
