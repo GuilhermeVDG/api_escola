@@ -12,12 +12,18 @@ export default class Session {
 
     if (!(await user.checkPassowrd(data.password))) throw new Error('INVALID_PASSWORD');
 
-    const { id } = user;
+    const { id, name, email } = user;
 
-    const token = jwt.sign({ id }, authConfig.secret, {
+    const token = jwt.sign({ id, email }, authConfig.secret, {
       expiresIn: authConfig.expiresIn,
     });
 
-    return { token };
+    return {
+      token,
+      user: {
+        name,
+        email,
+      },
+    };
   }
 }
