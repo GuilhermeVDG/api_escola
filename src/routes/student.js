@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import StudentController from '../controllers/student';
+import AuthMiddleware from '../middlewares/auth';
 
 export default class User {
   constructor() {
@@ -9,6 +10,8 @@ export default class User {
   }
 
   setup() {
+    this.routes.use(AuthMiddleware);
+
     this.routes.post('/store', this.studentController.store);
 
     return this.routes;
