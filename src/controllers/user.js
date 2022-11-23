@@ -5,7 +5,7 @@ export default class Users {
     this.userServices = new UserServices();
 
     this.store = this.store.bind(this);
-    this.find = this.find.bind(this);
+    this.detail = this.detail.bind(this);
   }
 
   async store(req, res) {
