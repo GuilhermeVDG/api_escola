@@ -11,12 +11,7 @@ export default class Students {
 
   async store(req, res) {
     try {
-      const response = await this.studentServices.store({
-        name: 'Guilherme',
-        surname: 'Vanderley',
-        email: 'guilherme@gmail.com',
-        age: 20,
-      });
+      const response = await this.studentServices.store(req.body);
 
       return Handle.success(response, res);
     } catch (error) {
