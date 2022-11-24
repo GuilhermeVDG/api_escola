@@ -50,4 +50,14 @@ export default class Users {
       email,
     };
   }
+
+  async delete(userId) {
+    const user = await User.findByPk(userId);
+
+    if (!user) return Handle.exception('NOT_FOUND');
+
+    await user.destroy();
+
+    return { ok: true };
+  }
 }
