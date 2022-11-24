@@ -14,9 +14,9 @@ export default class Routes {
   }
 
   setup() {
+    this.routes.use('/session', this.sessionRoutes.setup());
     this.routes.use('/', this.userRoutes.setup());
     this.routes.use('/students', this.studentRoutes.setup());
-    this.routes.use('/session', this.sessionRoutes.setup());
 
     return this.routes;
   }
