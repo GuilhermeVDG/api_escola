@@ -17,6 +17,7 @@ export default class User {
     this.routes.use(AuthMiddleware);
 
     this.routes.get('/detail', this.userController.detail);
+    this.routes.put('/update', SchemaValidator.validate(userSchemas.update), this.userController.update);
 
     return this.routes;
   }

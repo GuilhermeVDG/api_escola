@@ -7,6 +7,7 @@ export default class Users {
 
     this.store = this.store.bind(this);
     this.detail = this.detail.bind(this);
+    this.update = this.update.bind(this);
   }
 
   async store(req, res) {
@@ -22,6 +23,16 @@ export default class Users {
   async detail(req, res) {
     try {
       const response = await this.userServices.detail(req.userId);
+
+      return Handle.success(response, res);
+    } catch (error) {
+      return Handle.error(error, res);
+    }
+  }
+
+  async update(req, res) {
+    try {
+      const response = await this.userServices.update(req.userId, req.data);
 
       return Handle.success(response, res);
     } catch (error) {
