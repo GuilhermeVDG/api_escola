@@ -7,31 +7,14 @@ export default class User extends Model {
       name: {
         type: Sequelize.STRING,
         defaultValue: '',
-        validate: {
-          len: {
-            args: [3, 30],
-            msg: 'INVALID_NAME',
-          },
-        },
       },
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
-        validate: {
-          isEmail: {
-            msg: 'INVALID_EMAIL',
-          },
-        },
       },
       password: {
         type: Sequelize.VIRTUAL,
         defaultValue: '',
-        validate: {
-          len: {
-            args: [6, 50],
-            msg: 'INVALID_PASSWORD',
-          },
-        },
       },
       password_hash: {
         type: Sequelize.STRING,

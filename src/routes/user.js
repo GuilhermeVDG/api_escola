@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import UserController from '../controllers/user';
 import AuthMiddleware from '../middlewares/auth';
+import userSchemas from '../schemas/user';
+import SchemaValidator from '../middlewares/validator';
 
 export default class User {
   constructor() {
@@ -10,7 +12,7 @@ export default class User {
   }
 
   setup() {
-    this.routes.post('/store', this.userController.store);
+    this.routes.post('/store', SchemaValidator.validate(userSchemas.store), this.userController.store);
 
     this.routes.use(AuthMiddleware);
 
