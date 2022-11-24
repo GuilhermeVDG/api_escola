@@ -1,3 +1,5 @@
+import Handle from '../utils/handle';
+
 export default class SchemaValidator {
   static validate(schema) {
     return async (req, res, next) => {
@@ -17,7 +19,7 @@ export default class SchemaValidator {
 
         return next();
       } catch (error) {
-        return res.status(400).json({ error });
+        return Handle.error(error, res);
       }
     };
   }

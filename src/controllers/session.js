@@ -1,4 +1,5 @@
 import SessionServices from '../services/session';
+import Handle from '../utils/handle';
 
 export default class Session {
   constructor() {
@@ -11,9 +12,9 @@ export default class Session {
     try {
       const response = await this.sessionServices.login(req.body);
 
-      return res.json(response);
+      return Handle.success(response, res);
     } catch (error) {
-      return res.status(400).json(error);
+      return Handle.error(error, res);
     }
   }
 }

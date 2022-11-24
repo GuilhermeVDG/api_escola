@@ -1,4 +1,5 @@
 import UserServices from '../services/user';
+import Handle from '../utils/handle';
 
 export default class Users {
   constructor() {
@@ -12,9 +13,9 @@ export default class Users {
     try {
       const response = await this.userServices.store(req.body);
 
-      return res.json(response);
+      return Handle.success(response, res);
     } catch (error) {
-      return res.status(400).json({ errors: error.errors.map((err) => err.message) });
+      return Handle.error(error, res);
     }
   }
 
@@ -22,9 +23,9 @@ export default class Users {
     try {
       const response = await this.userServices.detail(req.userId);
 
-      return res.json(response);
+      return Handle.success(response, res);
     } catch (error) {
-      return res.status(400).json('NOT_FOUND');
+      return Handle.error(error, res);
     }
   }
 }

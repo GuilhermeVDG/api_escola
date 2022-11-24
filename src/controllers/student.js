@@ -1,5 +1,7 @@
 import StudentServices from '../services/student';
 
+import Handle from '../utils/handle';
+
 export default class Students {
   constructor() {
     this.studentServices = new StudentServices();
@@ -16,9 +18,9 @@ export default class Students {
         age: 20,
       });
 
-      return res.json(response);
+      return Handle.success(response, res);
     } catch (error) {
-      return res.status(400).json('SOMETHING_WRONG_HAPPENED');
+      return Handle.error(error, res);
     }
   }
 }
