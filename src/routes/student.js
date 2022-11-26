@@ -15,6 +15,7 @@ export default class User {
     this.routes.use(AuthMiddleware);
 
     this.routes.post('/store', SchemaValidator.validate(studentSchemas.store), this.studentController.store);
+    this.routes.get('/index', this.studentController.index);
 
     return this.routes;
   }

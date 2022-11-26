@@ -16,4 +16,12 @@ export default class Students {
       age,
     };
   }
+
+  async index() {
+    const students = await Student.findAll();
+
+    if (!students) return Handle.exception('NO_STUDENTS');
+
+    return students;
+  }
 }
