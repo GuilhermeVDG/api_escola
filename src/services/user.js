@@ -16,7 +16,7 @@ export default class Users {
   async detail(userId) {
     const { id, name, email } = await User.findByPk(~~userId);
 
-    if (!id) return Handle.exception('NOT_FOUND');
+    if (!id) throw Handle.exception('NOT_FOUND');
 
     return {
       id,
@@ -39,7 +39,7 @@ export default class Users {
         where: { email: changes.email },
       });
 
-      if (userExists) return Handle.exception('EMAIL_IS_BEEN_USED');
+      if (userExists) throw Handle.exception('EMAIL_IS_BEEN_USED');
     }
 
     const { id, name, email } = await user.update(changes);
@@ -54,7 +54,7 @@ export default class Users {
   async delete(userId) {
     const user = await User.findByPk(userId);
 
-    if (!user) return Handle.exception('NOT_FOUND');
+    if (!user) throw Handle.exception('NOT_FOUND');
 
     await user.destroy();
 

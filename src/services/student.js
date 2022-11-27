@@ -7,7 +7,7 @@ export default class Students {
       id, name, surname, age,
     } = await Student.create(data);
 
-    if (!id) return Handle.exception('NOT_FOUND');
+    if (!id) throw Handle.exception('NOT_FOUND');
 
     return {
       id,
@@ -20,7 +20,7 @@ export default class Students {
   async index() {
     const students = await Student.findAll();
 
-    if (!students) return Handle.exception('NO_STUDENTS');
+    if (!students) throw Handle.exception('NO_STUDENTS');
 
     return students;
   }
@@ -28,7 +28,7 @@ export default class Students {
   async detail(studentId) {
     const student = await Student.findByPk(~~studentId);
 
-    if (!student) return Handle.exception('STUDENT_NOT_FOUND');
+    if (!student) throw Handle.exception('STUDENT_NOT_FOUND');
 
     const {
       name, surname, email, age,
@@ -45,7 +45,7 @@ export default class Students {
   async update(studentId, changes) {
     const student = await Student.findByPk(~~studentId);
 
-    if (!student) return Handle.exception('STUDENT_NOT_FOUND');
+    if (!student) throw Handle.exception('STUDENT_NOT_FOUND');
 
     if (changes.email) {
       const emailExists = Student.findOne({
@@ -54,7 +54,7 @@ export default class Students {
         },
       });
 
-      if (emailExists) return Handle.exception('EMAIL_MUST_BEEN_UNIQUE');
+      if (emailExists) throw Handle.exception('EMAIL_MUST_BEEN_UNIQUE');
     }
 
     const {
@@ -72,7 +72,7 @@ export default class Students {
   async delete(studentId) {
     const student = await Student.findByPk(~~studentId);
 
-    if (!student) return Handle.exception('STUDENT_NOT_FOUND');
+    if (!student) throw Handle.exception('STUDENT_NOT_FOUND');
 
     await student.destroy();
 
