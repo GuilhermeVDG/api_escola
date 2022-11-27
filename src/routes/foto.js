@@ -1,8 +1,6 @@
 import { Router } from 'express';
 
 import FotoController from '../controllers/foto';
-// import fotoSchema from '../schemas/foto';
-// import SchemaValidator from '../middlewares/validator';
 
 export default class Foto {
   constructor() {

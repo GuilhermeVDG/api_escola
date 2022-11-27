@@ -9,10 +9,14 @@ export default class Foto {
   }
 
   async store(req, res) {
-    try {
-      const response = await this.fotoServices.store();
+    const { originalname, filename } = req.file;
+    // eslint-disable-next-line camelcase
+    const { student_id } = req.body;
 
-      return Handle.success(req.file, res);
+    try {
+      const response = await this.fotoServices.store(student_id, { originalname, filename });
+
+      return Handle.success(response, res);
     } catch (error) {
       return Handle.error(error, res);
     }

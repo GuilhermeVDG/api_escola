@@ -10,7 +10,7 @@ import uploadConfig from './config/multer';
 export default class Routes {
   constructor() {
     this.routes = new Router();
-    this.upload = multer(uploadConfig.upload('../uploads'));
+    this.upload = multer(uploadConfig.upload('./uploads'));
 
     this.userRoutes = new UserRoutes();
     this.studentRoutes = new StudentRoutes();
