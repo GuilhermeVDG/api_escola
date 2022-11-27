@@ -9,13 +9,14 @@ export default class SchemaValidator {
           params: req.params,
           query: req.query,
         };
-        const { body, params, query } = await schema.validate(validation, {
+
+        await schema.validate(validation, {
           stripUnknown: true,
           recursive: true,
         });
 
-        req.data = body;
-        req.filter = { ...params, ...query };
+        req.data = req.body;
+        req.filter = { ...req.params, ...req.query };
 
         return next();
       } catch (error) {

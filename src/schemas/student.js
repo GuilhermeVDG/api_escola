@@ -10,8 +10,15 @@ const schemas = {
         age: number('INVALID_FORMAT').required('AGE_IS_MANDATORY'),
       }).noUnknown(),
   },
+  find: {
+    params:
+      object().shape({
+        id: number('INVALID_FORMAT').required('ID_IS_MANDATORY'),
+      }).noUnknown(),
+  },
 };
 
 export default {
   store: object(schemas.store),
+  detail: object(schemas.detail),
 };

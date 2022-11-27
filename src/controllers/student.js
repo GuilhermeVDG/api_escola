@@ -8,6 +8,7 @@ export default class Students {
 
     this.store = this.store.bind(this);
     this.index = this.index.bind(this);
+    this.detail = this.detail.bind(this);
   }
 
   async store(req, res) {
@@ -23,6 +24,16 @@ export default class Students {
   async index(req, res) {
     try {
       const response = await this.studentServices.index();
+
+      return Handle.success(response, res);
+    } catch (error) {
+      return Handle.error(error, res);
+    }
+  }
+
+  async detail(req, res) {
+    try {
+      const response = await this.studentServices.detail(req.filter.id);
 
       return Handle.success(response, res);
     } catch (error) {

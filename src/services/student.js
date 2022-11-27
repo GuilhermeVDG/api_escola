@@ -24,4 +24,21 @@ export default class Students {
 
     return students;
   }
+
+  async detail(studentId) {
+    const student = await Student.findByPk(~~studentId);
+
+    if (!student) return Handle.exception('STUDENT_NOT_FOUND');
+
+    const {
+      name, surname, email, age,
+    } = student;
+
+    return {
+      name,
+      surname,
+      email,
+      age,
+    };
+  }
 }
