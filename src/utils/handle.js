@@ -10,6 +10,10 @@ export default class Handle {
       return res.status(400).send({ error: 'SOMETHING_WRONG_HAPPENNED' });
     }
 
+    const errors = error.errors.map((err) => err.message);
+
+    if (errors) return res.status(400).send({ error: errors });
+
     return res.status(400).send({ error: error.errors });
   }
 
