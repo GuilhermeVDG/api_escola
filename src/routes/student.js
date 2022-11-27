@@ -16,7 +16,9 @@ export default class User {
 
     this.routes.post('/store', SchemaValidator.validate(studentSchemas.store), this.studentController.store);
     this.routes.get('/index', this.studentController.index);
-    this.routes.get('/detail/:id', SchemaValidator.validate(studentSchemas.detail), this.studentController.detail);
+    this.routes.get('/:id', SchemaValidator.validate(studentSchemas.detail), this.studentController.detail);
+    this.routes.put('/:id', SchemaValidator.validate(studentSchemas.update), this.studentController.update);
+    this.routes.delete('/:id', SchemaValidator.validate(studentSchemas.delete), this.studentController.delete);
 
     return this.routes;
   }

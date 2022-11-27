@@ -16,9 +16,20 @@ const schemas = {
         id: number('INVALID_FORMAT').required('ID_IS_MANDATORY'),
       }).noUnknown(),
   },
+  update: {
+    body:
+      object().shape({
+        email: string('INVALID_FORMAT').email('INVALID_EMAIL'),
+        name: string('INAVLID_FORMAT').min(3, 'INVALID_NAME').max(20, 'INVALID_NAME'),
+        surname: string('INVALID_FORMAT').min(3, 'INVALID_NAME').max(20, 'INVALID_NAME'),
+        age: number('INVALID_FORMAT'),
+      }).noUnknown(),
+  },
 };
 
 export default {
   store: object(schemas.store),
-  detail: object(schemas.detail),
+  detail: object(schemas.find),
+  update: object(schemas.update),
+  delete: object(schemas.find),
 };

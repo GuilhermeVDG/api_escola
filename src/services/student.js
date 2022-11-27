@@ -41,4 +41,41 @@ export default class Students {
       age,
     };
   }
+
+  async update(studentId, changes) {
+    const student = await Student.findByPk(~~studentId);
+
+    if (!student) return Handle.exception('STUDENT_NOT_FOUND');
+
+    if (changes.email) {
+      const emailExists = Student.findOne({
+        where: {
+          email: changes.email,
+        },
+      });
+
+      if (emailExists) return Handle.exception('EMAIL_MUST_BEEN_UNIQUE');
+    }
+
+    const {
+      name, surname, email, age,
+    } = await student.update(changes);
+
+    return {
+      name,
+      surname,
+      email,
+      age,
+    };
+  }
+
+  async delete(studentId) {
+    const student = await Student.findByPk(~~studentId);
+
+    if (!student) return Handle.exception('STUDENT_NOT_FOUND');
+
+    await student.destroy();
+
+    return { ok: true };
+  }
 }
