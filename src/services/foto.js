@@ -1,9 +1,9 @@
+/* eslint-disable camelcase */
 import Foto from '../models/foto';
 
 export default class Fotos {
-  async store(studentId, data) {
-    // eslint-disable-next-line max-len
-    const response = await Foto.create({ student_id: studentId, original_name: data.originalname, filename: data.filename });
+  async store(student_id, originalname, filename) {
+    const response = await Foto.create({ originalname, filename, student_id });
 
     return response;
   }

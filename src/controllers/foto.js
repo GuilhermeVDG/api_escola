@@ -14,7 +14,8 @@ export default class Foto {
     const { student_id } = req.body;
 
     try {
-      const response = await this.fotoServices.store(student_id, { originalname, filename });
+      console.log(originalname);
+      const response = await this.fotoServices.store(student_id, originalname, filename);
 
       return Handle.success(response, res);
     } catch (error) {
