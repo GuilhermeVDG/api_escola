@@ -11,6 +11,7 @@ export default class Foto {
 
   setup() {
     this.routes.post('/', uploadMiddleware, this.fotoController.store);
+    this.routes.delete('/:id', this.fotoController.delete);
 
     return this.routes;
   }

@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { resolve } from 'path';
 
 import Routes from './routes';
 
@@ -13,6 +14,7 @@ export default class App {
     this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(express.static(resolve(__dirname, '..', 'uploads')));
 
     this.app.use(this.routes.setup());
   }

@@ -14,11 +14,9 @@ export default class User {
   setup() {
     this.routes.post('/store', SchemaValidator.validate(userSchemas.store), this.userController.store);
 
-    this.routes.use(AuthMiddleware);
-
-    this.routes.get('/detail', this.userController.detail);
-    this.routes.put('/update', SchemaValidator.validate(userSchemas.update), this.userController.update);
-    this.routes.delete('/delete', this.userController.delete);
+    this.routes.get('/detail', AuthMiddleware, this.userController.detail);
+    this.routes.put('/update', AuthMiddleware, SchemaValidator.validate(userSchemas.update), this.userController.update);
+    this.routes.delete('/delete', AuthMiddleware, this.userController.delete);
 
     return this.routes;
   }

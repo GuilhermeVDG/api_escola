@@ -1,4 +1,5 @@
 import Student from '../models/student';
+import Foto from '../models/foto';
 import Handle from '../utils/handle';
 
 export default class Students {
@@ -18,7 +19,14 @@ export default class Students {
   }
 
   async index() {
-    const students = await Student.findAll();
+    const students = await Student.findAll({
+      attributes: ['id', 'name', 'surname', 'email', 'age'],
+      order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
+      include: {
+        model: Foto,
+        attributes: ['filename'],
+      },
+    });
 
     if (!students) throw Handle.exception('NO_STUDENTS');
 
@@ -26,20 +34,18 @@ export default class Students {
   }
 
   async detail(studentId) {
-    const student = await Student.findByPk(~~studentId);
+    const student = await Student.findByPk(~~studentId, {
+      attributes: ['id', 'name', 'surname', 'email', 'age'],
+      order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
+      include: {
+        model: Foto,
+        attributes: ['filename'],
+      },
+    });
 
     if (!student) throw Handle.exception('STUDENT_NOT_FOUND');
 
-    const {
-      name, surname, email, age,
-    } = student;
-
-    return {
-      name,
-      surname,
-      email,
-      age,
-    };
+    return student;
   }
 
   async update(studentId, changes) {
