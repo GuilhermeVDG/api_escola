@@ -5,13 +5,14 @@ import Handle from '../utils/handle';
 export default class Students {
   async store(data) {
     const {
-      id, name, surname, age,
+      id, email, name, surname, age,
     } = await Student.create(data);
 
     if (!id) throw Handle.exception('NOT_FOUND');
 
     return {
       id,
+      email,
       name,
       surname,
       age,
