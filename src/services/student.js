@@ -25,7 +25,7 @@ export default class Students {
       order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
       include: {
         model: Foto,
-        attributes: ['filename'],
+        attributes: ['url'],
       },
     });
 
@@ -40,7 +40,7 @@ export default class Students {
       order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
       include: {
         model: Foto,
-        attributes: ['filename'],
+        attributes: ['url'],
       },
     });
 
