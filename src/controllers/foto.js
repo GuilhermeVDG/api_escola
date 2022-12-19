@@ -11,13 +11,12 @@ export default class Foto {
   }
 
   async store(req, res) {
-    const { originalname, filename } = req.file;
-    const { student_id } = req.body;
+    const { originalname, filename, student_id } = req.body;
 
     try {
       const response = await this.fotoServices.store(student_id, originalname, filename);
 
-      return Handle.success(response, res);
+      return res.json(response);
     } catch (error) {
       return Handle.error(error, res);
     }
