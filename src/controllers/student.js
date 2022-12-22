@@ -45,7 +45,7 @@ export default class Students {
 
   async update(req, res) {
     try {
-      const response = await this.studentServices.update(req.userId, req.data);
+      const response = await this.studentServices.update(req.filter.id, req.data);
 
       return Handle.success(response, res);
     } catch (error) {

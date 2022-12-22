@@ -55,13 +55,13 @@ export default class Students {
     if (!student) throw Handle.exception('STUDENT_NOT_FOUND');
 
     if (changes.email) {
-      const emailExists = Student.findOne({
+      const emailExists = await Student.findOne({
         where: {
           email: changes.email,
         },
       });
 
-      if (emailExists) throw Handle.exception('EMAIL_MUST_BEEN_UNIQUE');
+      if (emailExists && (~~emailExists.id !== ~~studentId)) throw Handle.exception('EMAIL_MUST_BEEN_UNIQUE');
     }
 
     const {
