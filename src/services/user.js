@@ -39,7 +39,7 @@ export default class Users {
         where: { email: changes.email },
       });
 
-      if (userExists) throw Handle.exception('EMAIL_IS_BEEN_USED');
+      if (userExists && (~~userExists.email !== ~~changes.email)) throw Handle.exception('EMAIL_IS_BEEN_USED');
     }
 
     const { id, name, email } = await user.update(changes);
